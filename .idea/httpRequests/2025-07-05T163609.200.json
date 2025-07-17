@@ -1,0 +1,7 @@
+{
+  "id": "89b29062-df3d-4b67-9ba7-83073e195766",
+  "name": "John Doe with billing account",
+  "address": "new york",
+  "email": "test_billing_account@gmail.com",
+  "dateOfBirth": "1987-07-09"
+}
