@@ -6,18 +6,18 @@ spring:
   cloud:
     gateway:
       routes:
-#        http://localhost:4004/auth/login
-#        API GATEWAY -> http://auth-service:4005/login
+        #        http://localhost:4004/auth/login
+        #        API GATEWAY -> http://auth-service:4005/login
         - id: auth-service-route
-          uri: http://auth-service:4005
+          uri: http://host.docker.internal:4005
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
 
-#          Route for /api/patients/** to patient-service
+        #          Route for /api/patients/** to patient-service
         - id: patient-service-root
-          uri: http://patient-service:4000
+          uri: http://host.docker.internal:4000
           predicates:
             - Path=/api/patients/**
           filters:
@@ -25,14 +25,14 @@ spring:
             - JwtValidation   # JwtValidationGatewayFilterFactory the starting name has to be same to apply it as filter
 
         - id: api-docs-patient-route
-          uri: http://patient-service:4000
+          uri: http://host.docker.internal:4000
           predicates:
             - Path=/api-docs/patients
           filters:
             - RewritePath=/api-docs/patients,/v3/api-docs
 
         - id: api-docs-auth-route
-          uri: http://auth-service:4005
+          uri: http://host.docker.internal:4005
           predicates:
             - Path=/api-docs/auth
           filters:
